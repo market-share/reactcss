@@ -1,15 +1,9 @@
 'use strict';
 
-import reactcss from './transform';
-import Component from './deprecated/Component';
-import inline from './inline';
-
-const ReactCSS = reactcss;
-
-ReactCSS.Component = Component;
-ReactCSS.inline = inline;
-ReactCSS.mixin = {
-  css: inline,
+module.exports = {
+  Component: require('./deprecated/Component'),
+  inline: require('./inline'),
+  mixin: {
+    css: require('./inline'),
+  },
 };
-
-export default ReactCSS;
