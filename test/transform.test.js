@@ -18,19 +18,6 @@ describe('transform', function() {
     expect(component.render().props.foo).to.exist;
   });
 
-  it('shouldnt touch children', function() {
-    class SomeComponent extends React.Component {
-      render() {
-        return <div foo="foo">bar</div>;
-      }
-    }
-
-    var Component = ReactCSS(SomeComponent);
-    var component = TestUtils.renderIntoDocument(<Component />);
-
-    expect(component.render().props.children).to.eql('bar');
-  });
-
   it('should replace the is with style prop basic', function() {
 
     class SomeComponent extends React.Component {
