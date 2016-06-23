@@ -39,10 +39,10 @@ const transformElement = (_this, element, classes) => {
         toMerge = { style: findStyle(elName) };
       }
 
-      styles = Object.assign({}, styles, toMerge);
+      styles = _.merge({}, styles, toMerge);
     });
 
-    newProps = Object.assign({}, element.props, styles, { is: null });
+    newProps = _.merge({}, element.props, styles, { is: null });
   }
 
   return React.cloneElement(element, newProps, newChildren);
