@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-export const checkClassStructure = (classes) => {
+module.exports = (classes) => {
 
   for (var className in classes) {
     var elements = classes[className];
@@ -19,5 +19,3 @@ export const checkClassStructure = (classes) => {
     }
   }
 };
-
-export default checkClassStructure;

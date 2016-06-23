@@ -1,8 +1,8 @@
 'use strict';
 
-import _ from 'lodash';
-import checkClassStructure from './check-class-structure';
-import combine from './combine';
+const _ = require('lodash');
+const checkClassStructure = require('./check-class-structure');
+let combine = require('./combine');
 
 /*
   Inline CSS function. This is the half-way point until multiple inheritance exists
@@ -11,6 +11,8 @@ import combine from './combine';
 */
 
 module.exports = function(declaredClasses) {
+  // What?
+  combine = require('./combine');
 
   const arrayOfStyles = [];
 
