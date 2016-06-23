@@ -1,7 +1,7 @@
 'use strict'
 
-import React from 'react';
-import ReactCSS from 'reactcss';
+React = require('react')
+ReactCSS = require('reactcss')
 markdown = require('../../helpers/markdown')
 
 { Container, Grid } = require('../layout')
@@ -14,7 +14,7 @@ commentedFile = require('../../docs/00-commented-file.md')
 
 
 
-export classDocsBody extends ReactCSS.Component
+module.exports = class DocsBody extends ReactCSS.Component
 
   state:
     visible: ''
@@ -45,7 +45,7 @@ export classDocsBody extends ReactCSS.Component
     window.addEventListener('scroll', @onScroll, false);
 
     files = {}
-    for file in @refs.files.children
+    for file in React.findDOMNode( @refs.files ).children
       files[file.offsetTop] = file.id
 
     @setState( files: files )

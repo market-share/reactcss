@@ -1,13 +1,13 @@
 'use strict'
 
-import React from 'react';
-import ReactCSS from 'reactcss';
+React = require('react')
+ReactCSS = require('reactcss')
 
 { Tile } = require('react-material-design')
 
 
 
-export classDocsSidebarItem extends ReactCSS.Component
+module.exports = class DocsSidebarItem extends ReactCSS.Component
 
   classes: ->
     'default':

@@ -5,7 +5,7 @@ import ReactCSS from 'reactcss';
 
 import Node from '../../helpers/Node';
 
-export class Particles extends React.Component {
+export class Particles extends ReactCSS.Component {
 
   classes() {
     return {
@@ -84,4 +84,4 @@ export class Particles extends React.Component {
   }
 }
 
-export default ReactCSS(Particles);
+export default Particles;

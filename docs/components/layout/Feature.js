@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactCSS from 'reactcss';
 
-export class Feature extends React.Component {
+export class Feature extends ReactCSS.Component {
 
   classes() {
     return {
@@ -26,4 +26,4 @@ export class Feature extends React.Component {
 
 }
 
-export default ReactCSS(Feature);
+export default Feature;

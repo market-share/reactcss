@@ -7,7 +7,7 @@ import { Container } from '../layout';
 import { Animate } from '../common';
 import Particles from './Particles';
 
-export class HomeFeature extends React.Component {
+export class HomeFeature extends ReactCSS.Component {
 
   classes() {
     return {
@@ -61,10 +61,10 @@ export class HomeFeature extends React.Component {
     };
   }
 
-  activations() {
-    return {
+  styles() {
+    return this.css({
       'mobile': this.context.mobile,
-    };
+    });
   }
 
   render() {
@@ -103,4 +103,4 @@ HomeFeature.contextTypes = {
   mobile: React.PropTypes.bool,
 };
 
-export default ReactCSS(HomeFeature);
+export default HomeFeature;

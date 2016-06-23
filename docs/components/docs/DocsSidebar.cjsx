@@ -1,7 +1,7 @@
 'use strict'
 
-import React from 'react';
-import ReactCSS from 'reactcss';
+React = require('react')
+ReactCSS = require('reactcss')
 markdown = require('../../helpers/markdown')
 
 { Tile } = require('react-material-design')
@@ -9,7 +9,7 @@ DocsSidebarItem = require('./DocsSidebarItem')
 
 
 
-export classDocsSidebar extends ReactCSS.Component
+module.exports = class DocsSidebar extends ReactCSS.Component
 
   classes: ->
     'default':

@@ -1,6 +1,6 @@
 'use strict'
 
-import React from 'react';
+React = require('react')
 
 { Shell } = require('../layout')
 DocsBody = require('./DocsBody')
@@ -8,6 +8,6 @@ DocsFeature = require('./DocsFeature')
 
 
 
-export classDocs extends React.Component
+module.exports = class Docs extends React.Component
 
   render: -> <Shell feature={ DocsFeature } body={ DocsBody } nav="documentation" />
