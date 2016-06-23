@@ -5,7 +5,7 @@ import _ from 'lodash'
 import reactCSS from 'reactcss'
 const markdown = require('../../helpers/markdown')
 
-const { DocsSidebarItem } = require('./DocsSidebarItem')
+const DocsSidebarItem = require('./DocsSidebarItem')
 
 export class DocsSidebar extends React.Component {
   render() {
@@ -61,5 +61,3 @@ export class DocsSidebar extends React.Component {
     )
   }
 }
-
-export default DocsSidebar

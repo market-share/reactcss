@@ -2,23 +2,25 @@
 
 import React from 'react'
 
-export const Body = (props) => {
-  const Component = props.component
-  return (
-    <div>
-      <style>{ `
-        .flexbox-fix {
-          display: -webkit-box;
-          display: -moz-box;
-          display: -ms-flexbox;
-          display: -webkit-flex;
-          display: flex;
-        }
-      ` }</style>
+export class Body extends React.Component {
 
-      <Component />
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <style>{ `
+          .flexbox-fix {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+          }
+        ` }</style>
+
+        <this.props.component />
+      </div>
+    )
+  }
 }
 
 export default Body
