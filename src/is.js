@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 
-export const is = string => {
+const is = string => {
 
   function replace(classes, prop) {
     classes = classes.trim();

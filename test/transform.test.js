@@ -7,7 +7,7 @@ const TestUtils = require('react-addons-test-utils');
 const expect = require('chai').expect;
 require('testdom')('<html><body></body></html>');
 
-import ReactCSS from '../src/transform';
+const ReactCSS = require('../src/transform');
 
 describe('transform', function() {
 
