@@ -1,6 +1,6 @@
 'use strict';
 
-import { expect } from './helpers';
+const expect = require('chai').expect;
 const merge = require('../src/merge');
 
 describe('Merge', () => {

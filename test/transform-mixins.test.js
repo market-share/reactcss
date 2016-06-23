@@ -1,6 +1,6 @@
 'use strict';
 
-import { expect } from './helpers';
+const expect = require('chai').expect;
 const mixins = require('../src/transform-mixins');
 
 describe('Mixins', function() {

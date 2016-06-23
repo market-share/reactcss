@@ -1,6 +1,6 @@
 'use strict';
 
-import { expect } from './helpers';
+import { expect } from 'chai';
 import is from '../src/is';
 
 describe('is', () => {

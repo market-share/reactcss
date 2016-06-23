@@ -1,6 +1,6 @@
 'use strict';
 
-import { expect } from '../helpers';
+const expect = require('chai').expect;
 var { Component } = require('../../src/react-css');
 
 describe('Component', () => {
