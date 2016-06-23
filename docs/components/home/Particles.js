@@ -1,11 +1,22 @@
 'use strict';
 
 import React from 'react';
-import reactCSS from 'reactcss';
+import ReactCSS from 'reactcss';
 
 import Node from '../../helpers/Node';
 
 export class Particles extends React.Component {
+
+  classes() {
+    return {
+      'default': {
+        particles: {
+          Absolute: '0 0 0 0',
+        },
+      },
+    };
+  }
+
   componentDidMount() {
     this.paint();
   }
@@ -21,8 +32,8 @@ export class Particles extends React.Component {
     // Set width and height 2x scaled back for retina
     canvasNode.width = wrapWidth * 2;
     canvasNode.height = wrapHeight * 2;
-    canvasNode.style.width = `${ wrapWidth }px`;
-    canvasNode.style.height = `${ wrapHeight }px`;
+    canvasNode.style.width = wrapWidth + 'px';
+    canvasNode.style.height = wrapHeight + 'px';
     canvasContext.scale(2, 2);
 
     canvasContext.clearRect(0, 0, wrapWidth, wrapHeight);
@@ -36,15 +47,24 @@ export class Particles extends React.Component {
     const tilesWide = Math.ceil(wrapWidth / tileSize);
     const tilesTall = Math.ceil(wrapHeight / tileSize);
 
+    // for (column in [-1 .. (tilesWide + 2)]) {
+    //   for (row in [0 .. (tilesTall + 1)]) {
+    //     nodes.push( new Node(
+    //       randomBetween(0, tileSize) + (tileSize * column),
+    //       randomBetween(0, tileSize) + (tileSize * row) + 10,
+    //       randomBetween(2 + row, 4 + row),
+    //       `${ column }-${ row }`,
+    //       '#427CC0',
+    //       '#4A90E2' )
+    //     );
+    //   }
+    // }
+
     // Lets draw the lines first
     for (node in nodes) {
-      if (nodes.hasOwnProperty(node)) {
-        for (otherNode in nodes) {
-          if (nodes.hasOwnProperty(otherNode)) {
-            if (node.distanceTo(otherNode) < 110 && !node.isConnectedTo(otherNode)) {
-              node.connectTo(otherNode, canvasContext);
-            }
-          }
+      for (otherNode in nodes) {
+        if (node.distanceTo(otherNode) < 110 && !node.isConnectedTo(otherNode)) {
+          node.connectTo(otherNode, canvasContext);
         }
       }
     }
@@ -56,20 +76,12 @@ export class Particles extends React.Component {
   }
 
   render() {
-    const styles = reactCSS({
-      'default': {
-        particles: {
-          Absolute: '0 0 0 0',
-        },
-      },
-    });
-
     return (
-      <div style={ styles.particles } ref="wrap">
+      <div is="particles" ref="wrap">
         <canvas ref="canvas" />
       </div>
     );
   }
 }
 
-export default Particles;
+export default ReactCSS(Particles);

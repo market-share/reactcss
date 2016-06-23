@@ -1,19 +1,12 @@
 'use strict';
 
 import React from 'react';
-import reactCSS from 'reactcss';
+import ReactCSS from 'reactcss';
 import markdown from '../../helpers/markdown';
 
-import { Raised, Tabs, Tile } from 'react-material-design';
+import{ Raised, Tabs, Tile } from 'react-material-design';
 
 export class Code extends React.Component {
-  static contextTypes = {
-    mobile: React.PropTypes.bool,
-  }
-
-  static propTypes = {
-    files: React.PropTypes.array,
-  }
 
   constructor() {
     super();
@@ -22,8 +15,16 @@ export class Code extends React.Component {
     };
   }
 
-  render() {
-    const styles = reactCSS({
+  static contextTypes = {
+    mobile: React.PropTypes.bool,
+  }
+
+  static propTypes = {
+    files: React.PropTypes.array,
+  }
+
+  classes() {
+    return {
       'default': {
         shortCodeBlock: {
           display: 'inline-block',
@@ -74,16 +75,21 @@ export class Code extends React.Component {
           lineHeight: '15px',
         },
       },
-    }, {
+    };
+  }
+
+  activations() {
+    return {
       'condensed': this.context.mobile,
-    });
+    };
+  }
 
-
-    const files = this.props.file.split('======');
+  render() {
+    let files = this.props.file.split('======');
     let filenames = [];
 
     files.map((file, i) => {
-      const args = markdown.getArgs(file);
+      let args = markdown.getArgs(file);
       let obj = {};
       if (args.fileName) {
         if (files.length > 1) {
@@ -100,17 +106,18 @@ export class Code extends React.Component {
 
         filenames.push(obj);
       }
-      return file;
     });
 
-    const code = markdown.getBody(files[this.state.visibleCode]);
-    const colorCoded = markdown.renderCode(`\`\`\`\n${ code }\`\`\``).trim();
-    const lines = colorCoded.split('\n').length;
+    let code = markdown.getBody(files[this.state.visibleCode]);
+
+    let args = markdown.getArgs(files[this.state.visibleCode]);
+    let colorCoded = markdown.renderCode("```\n#{ code }```").trim();
+    let lines = colorCoded.split('\n').length;
 
     return (
       <Raised>
 
-        <style>{ `
+        <style>{`
           .rendered{
             color: #607D8B; // blue grey 500
           }
@@ -125,33 +132,32 @@ export class Code extends React.Component {
           }
           .rendered .hljs-title{
           }
-        ` }</style>
+        `}</style>
 
-        { filenames.length ? (
-          <div style={ styles.head }>
-            <div style={ styles.files }>
-              <Tabs style={ styles.Files } tabs={ filenames } />
-            </div>
+        { filenames.length ?
+            <div is="head">
+              <div is="files">
+                <Tabs is="Files" tabs={ filenames } />
+              </div>
+            </div> : null }
+
+        <Tile is="Tile">
+          <div is="numbers">
+            { [...lines].map((line, i) => {
+              return <div key={ line } is="line">{ line }</div>;
+            })}
+
           </div>
-        ) : null }
-
-        <Tile style={ styles.Tile }>
-          <div style={ styles.numbers }>
-            { [...lines].map((line) => {
-              return <div key={ line } style={ styles.line }>{ line }</div>;
-            }) }
-
-          </div>
-          <div style={ styles.center }>
-            <style>{ `
+          <div is="center">
+            <style>{`
               .rendered pre{
                 margin: 0;
               }
               .rendered p{
                 margin: 0;
               }
-            ` }</style>
-            <div className="rendered" dangerouslySetInnerHTML={ { __html: colorCoded } } />
+            `}</style>
+            <div className="rendered" dangerouslySetInnerHTML={{ __html: colorCoded }} />
           </div>
         </Tile>
 
@@ -160,4 +166,4 @@ export class Code extends React.Component {
   }
 }
 
-export default Code;
+export default ReactCSS(Code);

@@ -1,15 +1,16 @@
 'use strict';
 
 import React from 'react';
-import reactCSS from 'reactcss';
+import ReactCSS from 'reactcss';
 
 import { Container } from '../layout';
 import { Animate } from '../common';
 import Particles from './Particles';
 
 export class HomeFeature extends React.Component {
-  render() {
-    const styles = reactCSS({
+
+  classes() {
+    return {
       'default': {
         homeFeature: {
           background: '#4A90E2',
@@ -57,26 +58,30 @@ export class HomeFeature extends React.Component {
           marginTop: '50px',
         },
       },
-    }, {
-      'mobile': this.context.mobile,
-    });
+    };
+  }
 
+  activations() {
+    return {
+      'mobile': this.context.mobile,
+    };
+  }
+
+  render() {
     return (
-      <div style={ styles.homeFeature }>
+      <div is="homeFeature">
+
         <Container>
-          <div style={ styles.inside }>
+
+          <div is="inside">
 
             <Animate>
-              <div style={ styles.headline }>Bringing Classes to Inline Styles</div>
+              <div is="headline">Bringing Classes to Inline Styles</div>
             </Animate>
 
-            <Animate
-              inStartTransform="translateY(70px)"
-              inEndTransform="translateY(0)"
-              inDelay={ 400 }
-            >
-              <div style={ styles.install }>
-                <span style={ styles.dollar }>$</span>
+            <Animate inStartTransform="translateY(70px)" inEndTransform="translateY(0)" inDelay={ 400 }>
+              <div is="install">
+                <span is="dollar">$</span>
                 npm install reactcss
               </div>
             </Animate>
@@ -85,9 +90,10 @@ export class HomeFeature extends React.Component {
 
         </Container>
 
-        <div style={ styles.particles }>
+        <div is="particles">
           <Particles />
         </div>
+
       </div>
     );
   }
@@ -97,4 +103,4 @@ HomeFeature.contextTypes = {
   mobile: React.PropTypes.bool,
 };
 
-export default HomeFeature;
+export default ReactCSS(HomeFeature);

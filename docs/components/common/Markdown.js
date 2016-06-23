@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import ReactCSS from 'reactcss';
 import markdown from '../../helpers/markdown';
 
 import Code from './Code';
@@ -19,16 +20,15 @@ export class Markdown extends React.Component {
 
     let newLines = children;
 
-    const codes = [];
+    let codes = [];
     markdown.isCode(children).map((codeBlock, i) => {
-      newLines = newLines.replace(codeBlock[1], '|Code:#{ i }|');
-      codes[i] = <Code file={ codeBlock[2] } condensed={ this.props.condensed } />;
-      return codeBlock;
+      newLines = newLines.replace(codeBlock[1], "|Code:#{ i }|");
+      codes[i] = <Code file={ codeBlock[2] } condensed={ this.props.condensed }/>;
     });
 
     return (
       <div>
-        <style>{ `
+        <style>{`
           .markdown code{
             background: #ddd;
             padding: 1px 5px 3px;
@@ -66,24 +66,18 @@ export class Markdown extends React.Component {
             font-size: 20px;
             color: rgba(0,0,0,.67);
           }
-        ` }</style>
+        `}</style>
 
         { newLines.split('\n').map((line, i) => {
           if (markdown.isCodeBlock(line)) {
-            return <div key={ i }>{ codes[markdown.codeNumber(line)] }</div>;
+            return <div key={ i }>{ codes[ markdown.codeNumber(line) ] }</div>;
+          } else {
+            return <div key={ i } is="markdown" className="markdown" dangerouslySetInnerHTML={{ __html: markdown.render(line) }} />;
           }
-
-          return (
-            <div
-              key={ i }
-              className="markdown"
-              dangerouslySetInnerHTML={ { __html: markdown.render(line) } }
-            />
-          );
-        }) }
+        })}
       </div>
     );
   }
 }
 
-export default Markdown;
+export default ReactCSS(Markdown);

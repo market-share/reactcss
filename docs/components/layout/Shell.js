@@ -8,19 +8,20 @@ import Feature from './Feature';
 import Body from './Body';
 
 export class Shell extends React.Component {
-  static childContextTypes = {
-    mobile: React.PropTypes.bool,
-  }
-
-  static getChildContext = () => {
-    return { mobile: this.state.mobile };
-  }
 
   constructor() {
     super();
     this.state = {
       mobile: false,
     };
+  }
+
+  static childContextTypes = {
+    mobile: React.PropTypes.bool,
+  }
+
+  static getChildContext = () => {
+    return { mobile: this.state.mobile };
   }
 
   componentWillMount() {
@@ -45,8 +46,8 @@ export class Shell extends React.Component {
     }
   }
 
-  render() {
-    const styles = ReactCSS({
+  classes() {
+    return {
       'default': {
         shell: {
           fontFamily: 'Roboto',
@@ -62,15 +63,17 @@ export class Shell extends React.Component {
           zIndex: '2',
         },
       },
-    });
+    };
+  }
 
+  render() {
     return (
-      <div style={ styles.shell }>
-        <div style={ styles.header }>
+      <div is="shell">
+        <div is="header">
           <Header display={ this.props.nav } />
         </div>
         <Feature component={ this.props.feature } />
-        <div style={ styles.body }>
+        <div is="body">
           <Body component={ this.props.body } />
         </div>
       </div>
@@ -78,4 +81,4 @@ export class Shell extends React.Component {
   }
 }
 
-export default Shell;
+export default ReactCSS(Shell);

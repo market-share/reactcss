@@ -1,12 +1,12 @@
-'use strict'
+'use strict';
 
-import ReactDOM from 'react-dom'
-import React from 'react'
-import '../node_modules/normalize.css/normalize.css'
+import ReactDOM from 'react-dom';
+import React from 'react';
+import '../node_modules/normalize.css/normalize.css';
 
-import Docs from './components/docs/Docs'
+import Home from './components/home/Home';
 
 ReactDOM.render(
-  React.createElement(Docs),
+  React.createElement(Home),
   document.getElementById('root')
-)
+);

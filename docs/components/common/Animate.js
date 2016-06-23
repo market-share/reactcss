@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import reactCSS from 'reactcss';
+import ReactCSS from 'reactcss';
 
 export class Animate extends React.Component {
 
@@ -13,6 +13,18 @@ export class Animate extends React.Component {
     inEndTransform: '',
     inEndTransition: 'all 400ms cubic-bezier(.55,0,.1,1)',
     inDelay: 0,
+  }
+
+  classes() {
+    return {
+      'default': {
+        outer: {
+          opacity: this.props.inStartOpacity,
+          transform: this.props.inStartTransform,
+          transition: this.props.inStartTransition,
+        },
+      },
+    };
   }
 
   componentDidMount() {
@@ -29,18 +41,8 @@ export class Animate extends React.Component {
   //  React.findDOMNode( this.refs.outer ).style.opacity = '0'
 
   render() {
-    const styles = reactCSS({
-      'default': {
-        outer: {
-          opacity: this.props.inStartOpacity,
-          transform: this.props.inStartTransform,
-          transition: this.props.inStartTransition,
-        },
-      },
-    });
-
-    return <div style={ styles.outer } ref="outer">{ this.props.children }</div>;
+    return <div is="outer" ref="outer">{ this.props.children }</div>;
   }
 }
 
-export default Animate;
+export default ReactCSS(Animate);
