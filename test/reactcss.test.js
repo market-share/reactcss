@@ -1,21 +1,17 @@
-/* global describe, it, beforeEach, afterEach */
-/* eslint react/prefer-stateless-function: 0 */
-/* eslint react/no-multi-comp: 0 */
-/* eslint no-underscore-dangle: 0 */
-/* eslint no-console: 0 */
+'use strict';
 
 import { React, TestUtils, expect, sinon } from './helpers';
-import reactCSS from '../src/reactcss';
+import ReactCSS from '../src/reactcss';
 
-describe('reactCSS', () => {
+describe('ReactCSS', function() {
   const sandbox = sinon.sandbox.create();
   beforeEach(() => { sandbox.stub(console, 'warn'); });
   afterEach(() => { sandbox.restore(); });
 
-  it('should return simple css', () => {
+  it('should return simple css', function() {
     class Component extends React.Component {
       render() {
-        const styles = reactCSS({
+        var styles = ReactCSS({
           'default': {
             body: {
               backgroundColor: '#fafafa',
@@ -28,13 +24,13 @@ describe('reactCSS', () => {
 
     const component = TestUtils.renderIntoDocument(<Component />);
     const body = TestUtils.findRenderedDOMComponentWithClass(component, 'body');
-    expect(body._style._values).to.eql({ 'background-color': 'rgb(250, 250, 250)' });
+    expect(body._style._values).to.eql({ 'background-color': 'rgb(250, 250, 250)', });
   });
 
-  it('should return multiple css', () => {
+  it('should return multiple css', function() {
     class Component extends React.Component {
       render() {
-        const styles = reactCSS({
+        var styles = ReactCSS({
           'default': {
             title: {
               color: this.props.color,
@@ -55,15 +51,15 @@ describe('reactCSS', () => {
 
     const component = TestUtils.renderIntoDocument(<Component color="red" />);
     const title = TestUtils.findRenderedDOMComponentWithClass(component, 'title');
-    expect(title._style._values).to.eql({ 'color': 'red' });
+    expect(title._style._values).to.eql({ 'color': 'red', });
     const card = TestUtils.findRenderedDOMComponentWithClass(component, 'card');
-    expect(card._style._values).to.eql({ 'box-shadow': '0 0 2px rgba(0,0,0,.1)' });
+    expect(card._style._values).to.eql({ 'box-shadow': '0 0 2px rgba(0,0,0,.1)', });
   });
 
-  it('should return complex css', () => {
+  it('should return complex css', function() {
     class Component extends React.Component {
       render() {
-        const styles = reactCSS({
+        var styles = ReactCSS({
           'default': {
             card: {
               boxShadow: '0 0 2px rgba(0,0,0,.1)',
@@ -85,11 +81,12 @@ describe('reactCSS', () => {
 
     const component = TestUtils.renderIntoDocument(<Component zIndex="2" />);
     const card = TestUtils.findRenderedDOMComponentWithClass(component, 'card');
-    expect(card._style._values).to.eql({ 'box-shadow': '0 4px 8px rgba(0,0,0,.15)' });
+    expect(card._style._values).to.eql({ 'box-shadow': '0 4px 8px rgba(0,0,0,.15)', });
   });
 
-  it('should throw a deprecation warning for using the old extend', () => {
-    class SomeComponent extends reactCSS.Component {
+  it('should throw a deprecation warning for using the old extend', function() {
+
+    class SomeComponent extends ReactCSS.Component {
       classes() {
         return {
           'default': {
@@ -112,7 +109,7 @@ describe('reactCSS', () => {
       }
     }
 
-    TestUtils.renderIntoDocument(<SomeComponent />);
+    const component = TestUtils.renderIntoDocument(<SomeComponent />);
     sinon.assert.calledOnce(console.warn);
   });
 });
