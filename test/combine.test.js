@@ -1,7 +1,7 @@
 'use strict';
 
 import { expect } from './helpers';
-import combine from '../src/combine';
+const combine = require('../src/combine');
 
 describe('Combine', () => {
 

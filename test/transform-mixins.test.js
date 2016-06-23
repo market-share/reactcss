@@ -1,7 +1,7 @@
 'use strict';
 
 import { expect } from './helpers';
-import mixins from '../src/transform-mixins';
+const mixins = require('../src/transform-mixins');
 
 describe('Mixins', function() {
   it('return the same object if nothing matches', function() {

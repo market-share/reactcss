@@ -1,7 +1,7 @@
 'use strict';
 
-import merge from './merge';
-import mixins from './transform-mixins';
+const merge = require('./merge');
+const mixins = require('./transform-mixins');
 
 module.exports = (styles, customMixins) => {
   const merged = merge(styles);

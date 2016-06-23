@@ -1,7 +1,7 @@
 'use strict';
 
 import { expect } from './helpers';
-import inline from '../src/inline';
+const inline = require('../src/inline');
 
 describe('React Inline', () => {
 

@@ -1,23 +1,21 @@
 'use strict';
 
-import mrg from 'merge';
-import _ from 'lodash';
+const merge = require('merge');
+const _ = require('lodash');
 
-const merge = (toMerge) => {
+module.exports = thingsToBeMerged => {
 
   // If its an object, lets just return it
-  if (_.isObject(toMerge) && !_.isArray(toMerge)) {
-    return toMerge;
+  if (_.isObject(thingsToBeMerged) && !_.isArray(thingsToBeMerged)) {
+    return thingsToBeMerged;
   }
 
   // If the array only has one object in it, return it
-  if (toMerge.length === 1) {
-    return toMerge[0];
+  if (thingsToBeMerged.length === 1) {
+    return thingsToBeMerged[0];
   }
 
   // Else, lets just use the merge.js function:
-  return mrg.recursive.apply(this, toMerge);
+  return merge.recursive.apply(this, thingsToBeMerged);
 
 };
-
-export default merge;

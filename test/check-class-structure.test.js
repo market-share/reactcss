@@ -1,7 +1,7 @@
 'use strict';
 
 import { sinon } from './helpers';
-import checkClassStructure from '../src/check-class-structure';
+const checkClassStructure = require('../src/check-class-structure');
 
 describe('Check Class Structure', () => {
   const sandbox = sinon.sandbox.create();
