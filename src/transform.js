@@ -2,7 +2,6 @@
 
 import React from 'react';
 import _ from 'lodash';
-import classnames from 'classnames';
 
 import inline from './inline';
 
@@ -22,27 +21,9 @@ const transformElement = (_this, element, classes) => {
     });
   }
 
-  const findStyle = name => {
-    return _this.styles && _this.styles() && _this.styles()[name];
-  };
-
   // If there is an `is` prop and has classes
   if (element.props.is && classes) {
-    let is = _.isObject(element.props.is) ? classnames(element.props.is) : element.props.is;
-    let styles = {};
-
-    is.split(' ').map((elName, i) => {
-      let toMerge = {};
-      if (elName[0] === elName[0].toUpperCase()) {
-        toMerge = findStyle(elName);
-      } else {
-        toMerge = { style: findStyle(elName) };
-      }
-
-      styles = _.merge({}, styles, toMerge);
-    });
-
-    newProps = _.merge({}, element.props, styles, { is: null });
+    newProps = Object.assign({}, element.props, { style: _this.styles && _this.styles() && _this.styles()[element.props.is], is: undefined });
   }
 
   return React.cloneElement(element, newProps, newChildren);
